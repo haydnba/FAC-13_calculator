@@ -1,0 +1,54 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>FAC-13 Calculator Project</title>
+	
+
+</head>
+
+<body>
+
+	<section>
+
+		<div id="wrapper">
+
+			<div id="log"><p id="demoB"></p></div>
+
+			<div id="display"><p id="demoA"></p></div>
+
+			<div id="keypad">
+
+				<button id="reset" class="set" value="" onclick="">reset</button>
+				<button id="clear" class="set" value="" onclick="">clear</button>
+				<button id="divide" class="operator" value="/" onclick="putOperator(this)">/</button>
+				<button id="seven" class="numeric" value="7" onclick="putFigure(this)">7</button>
+				<button id="eight" class="numeric" value="8" onclick="putFigure(this)">8</button>
+				<button id="nine" class="numeric" value="9" onclick="putFigure(this)">9</button>
+				<button id="multiply" class="operator" value="*" onclick="putOperator(this)">x</button>
+				<button id="four" class="numeric" value="4" onclick="putFigure(this)">4</button>
+				<button id="five" class="numeric" value="5" onclick="putFigure(this)">5</button>
+				<button id="six" class="numeric" value="6" onclick="putFigure(this)">6</button>
+				<button id="subtract" class="operator" value="-" onclick="putOperator(this)">-</button>
+				<button id="one" class="numeric" value="1" onclick="putFigure(this)">1</button>
+				<button id="two" class="numeric" value="2" onclick="putFigure(this)">2</button>
+				<button id="three" class="numeric" value="3" onclick="putFigure(this)">3</button>
+				<button id="add" class="operator" value="+" onclick="putOperator(this)">+</button>
+				<button id="zero" class="numeric" value="0" onclick="putFigure(this)">0</button>
+				<button id="point" class="numeric" value="." onclick="putDot()">.</button>
+				<button id="equals" class="set" value="" onclick="equalsPress()">=</button>
+
+			</div>
+
+		</div>
+
+	</section>
+
+</body>
+
+</html>
