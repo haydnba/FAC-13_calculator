@@ -1,22 +1,25 @@
 // JS Calculator Module...
 
-// main module
+const calculate = x => {
+  
+  	// const value = x;
+  
+	const add = y => x + y;
 
-const calculator = (() => {
+	const subtract = y => x - y;
 
-	let add = x => y => x + y;
+	const multiply = y => x * y;
 
-	let subtract = x => y => x - y;
-
-	let multiply = x => y => x * y;
-
-	let divide = x => y => x / y;
+	const divide = y => x / y;
 
 	return {
-		add: add,
+    	value: x,
+    	add: add,
 		subtract: subtract,
 		multiply: multiply,
 		divide: divide
 	};
 
-})();
+};
+
+export { calculate };
