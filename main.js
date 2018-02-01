@@ -74,7 +74,8 @@ const setup = function() {
 	for (let item of settings) {
 		item.addEventListener('click', e => {
 			output.value = [];
-			e.srcElement.id == 'reset' ? output.log = [] : '';
+			operator === 'equals' ? result = '' : '';
+			// e.srcElement.id == 'reset' ? output.log = [] : '';
 			display.innerHTML = `<p>${output.value.join('')}</p>`;
 		});
 	}
@@ -84,14 +85,19 @@ const setup = function() {
 		item.addEventListener('click', e => {
 			if (!output.value.length < 1) {
 				if (!result) {
-					result = calculate(parseFloat(output.value.join('')));					
+					result = calculate(parseFloat(output.value.join('')));
+					output.log.push(result.value);				
 				} else {
 					result = calculate(result[operator](parseFloat(output.value.join(''))));
+					output.log.push(result.value);
 				}
 				output.value = [];
-				display.innerHTML = `<p>${result.value}</p>`;
+				display.innerHTML = `<p>${result.value} ${e.srcElement.id !== 'equals' ? e.srcElement.innerHTML : '' }</p>`;
 			}
 			operator = e.srcElement.value;
+			output.log.push(e.srcElement.innerHTML);
+			console.log(operator);
+			console.log(output.log);
 		});
 	}
 
