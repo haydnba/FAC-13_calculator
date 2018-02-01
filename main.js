@@ -15,6 +15,8 @@ const setup = function() {
 
 		const divide = y => x / y;
 
+		const equals = () => result;
+
 		return {
 	    	value: x,
 	    	add: add,
@@ -33,7 +35,7 @@ const setup = function() {
 
 	// console.log(operator);
 
-	const digits = document.getElementsByClassName('numeric');
+	const figures = document.getElementsByClassName('numeric');
 
 	// console.log(digits);
 
@@ -53,55 +55,43 @@ const setup = function() {
 
 
 
-	// this is the bit where - generate first figure and display it...
-	// @TODO sort out the decimal point repetition problem!!
-	// let figure = [];
-
 	let display = document.getElementById('display');
 
-	for (let item of digits) {
-		// console.log(digit);
-		item.addEventListener('click', x => {
-			output.value.push(x.srcElement.value);
+	for (let item of figures) {
+		item.addEventListener('click', e => {
+			if (e.srcElement.id == 'point') {
+				if (!output.value.includes(e.srcElement.value)) {
+					output.value.push(e.srcElement.value);
+				}
+			} else {
+				output.value.push(e.srcElement.value);				
+			}
 			display.innerHTML = `<p>${output.value.join('')}</p>`;
-			// console.log(output.value);
 		});
 	}
 
-
-	// let's do some stuff with the setter buttons...
 
 	for (let item of settings) {
-		item.addEventListener('click', x => {
-			// console.log(x.srcElement);
+		item.addEventListener('click', e => {
 			output.value = [];
-			x.srcElement.id == 'reset' ? output.log = [] : '';
+			e.srcElement.id == 'reset' ? output.log = [] : '';
 			display.innerHTML = `<p>${output.value.join('')}</p>`;
 		});
 	}
 
 
-
-	// let's do some sums...
-
-	let test = document.getElementById('result');
-
-	// test.innerHTML = result.value;
-
 	for (let item of operators) {
-		item.addEventListener('click', x => {
-			// @TODO - sort out many problems!! - multiple presses of operator lead to NANs...
-			if (!result) {
-				result = calculate(parseFloat(output.value.join('')));
-				console.log(result);
+		item.addEventListener('click', e => {
+			if (!output.value.length < 1) {
+				if (!result) {
+					result = calculate(parseFloat(output.value.join('')));					
+				} else {
+					result = calculate(result[operator](parseFloat(output.value.join(''))));
+				}
 				output.value = [];
-			} else {
-				result = calculate(result[operator](parseFloat(output.value.join(''))));
-				console.log(result);
-				output.value = [];
+				display.innerHTML = `<p>${result.value}</p>`;
 			}
-			operator = x.srcElement.value;
-			console.log(operator)
+			operator = e.srcElement.value;
 		});
 	}
 
