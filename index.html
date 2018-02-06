@@ -8,7 +8,8 @@
 <head>
 
 	<title>FAC-13 Calculator Project</title>
-	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Kelly+Slab|MedievalSharp|UnifrakturCook:700" rel="stylesheet">
+	<link href="style.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -18,32 +19,42 @@
 
 		<div id="wrapper">
 
-			<!-- <div id="log"><p id="demoB"></p></div> -->
-
-			<div id="display"></div>
-
-			<div id="result"></div>
+			<div id="display">
+				<section id="history-display"></section>
+				<section id="figure-display"></section>
+				<section id="operator-display"></section>
+			</div>
 
 			<div id="keypad">
 
-				<button id="reset" class="setting">reset</button>
-				<button id="clear" class="setting">clear</button>
-				<button id="divide" class="operator" value="divide">/</button>
-				<button id="seven" class="numeric" value="7">7</button>
-				<button id="eight" class="numeric" value="8">8</button>
-				<button id="nine" class="numeric" value="9">9</button>
-				<button id="multiply" class="operator" value="multiply">x</button>
-				<button id="four" class="numeric" value="4">4</button>
-				<button id="five" class="numeric" value="5">5</button>
-				<button id="six" class="numeric" value="6">6</button>
-				<button id="subtract" class="operator" value="subtract">-</button>
-				<button id="one" class="numeric" value="1">1</button>
-				<button id="two" class="numeric" value="2">2</button>
-				<button id="three" class="numeric" value="3">3</button>
-				<button id="add" class="operator" value="add">+</button>
-				<button id="zero" class="numeric" value="0">0</button>
-				<button id="point" class="numeric" value=".">.</button>
-				<button id="equals" class="operator" value="equals">=</button>
+				<div>
+					<button id="reset" class="setting">RESET</button>
+					<button id="clear" class="setting">CLEAR</button>
+				</div>
+
+				<div>
+					<button id="divide" class="operator" value="/">÷</button>
+					<button id="multiply" class="operator" value="*">×</button>
+					<button id="subtract" class="operator" value="-">-</button>
+					<button id="add" class="operator" value="+">+</button>
+					<button id="equals" class="operator" value="=">=</button>
+				</div>
+
+				
+				<div>
+					<button id="point" class="numeric" value=".">.</button>
+					<button id="zero" class="numeric" value="0">0</button>
+					<button id="one" class="numeric" value="1">1</button>
+					<button id="two" class="numeric" value="2">2</button>
+					<button id="three" class="numeric" value="3">3</button>
+					<button id="four" class="numeric" value="4">4</button>
+					<button id="five" class="numeric" value="5">5</button>
+					<button id="six" class="numeric" value="6">6</button>
+					<button id="seven" class="numeric" value="7">7</button>
+					<button id="eight" class="numeric" value="8">8</button>
+					<button id="nine" class="numeric" value="9">9</button>					
+				</div>
+				
 
 			</div>
 
@@ -51,45 +62,8 @@
 
 	</main>
 
-	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript" src="side.js"></script>
 
 </body>
 
 </html>
-
-
-
-<!-- 	<section>
-
-		<div id="wrapper">
-
-			<div id="log"><p id="demoB"></p></div>
-
-			<div id="display"><p id="demoA"></p></div>
-
-			<div id="keypad">
-
-				<button id="reset" class="set" value="" onclick="">reset</button>
-				<button id="clear" class="set" value="" onclick="">clear</button>
-				<button id="divide" class="operator" value="/" onclick="putOperator(this)">/</button>
-				<button id="seven" class="numeric" value="7" onclick="putFigure(this)">7</button>
-				<button id="eight" class="numeric" value="8" onclick="putFigure(this)">8</button>
-				<button id="nine" class="numeric" value="9" onclick="putFigure(this)">9</button>
-				<button id="multiply" class="operator" value="*" onclick="putOperator(this)">x</button>
-				<button id="four" class="numeric" value="4" onclick="putFigure(this)">4</button>
-				<button id="five" class="numeric" value="5" onclick="putFigure(this)">5</button>
-				<button id="six" class="numeric" value="6" onclick="putFigure(this)">6</button>
-				<button id="subtract" class="operator" value="-" onclick="putOperator(this)">-</button>
-				<button id="one" class="numeric" value="1" onclick="putFigure(this)">1</button>
-				<button id="two" class="numeric" value="2" onclick="putFigure(this)">2</button>
-				<button id="three" class="numeric" value="3" onclick="putFigure(this)">3</button>
-				<button id="add" class="operator" value="+" onclick="putOperator(this)">+</button>
-				<button id="zero" class="numeric" value="0" onclick="putFigure(this)">0</button>
-				<button id="point" class="numeric" value="." onclick="putDot()">.</button>
-				<button id="equals" class="set" value="" onclick="equalsPress()">=</button>
-
-			</div>
-
-		</div>
-
-	</section> -->
