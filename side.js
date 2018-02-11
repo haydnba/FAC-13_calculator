@@ -6,13 +6,13 @@
 const init = function() {
 
 	const settings = document.querySelectorAll('.setting');
-	const figures = document.querySelectorAll('.numeric');
+	const digits = document.querySelectorAll('.numeric');
 	const operators = document.querySelectorAll('.operator');
 	const display = document.querySelector('#display');
 
 	return {
 		settings: settings,
-		figures: figures,
+		digits: digits,
 		operators: operators,
 		display: display,
 	}
@@ -40,20 +40,27 @@ const calculate = x => {
 
 class Calculation {
 
-	constructor(value, operator) {		
-		let _result = calculate(parseFloat(value));
+	constructor(figure, operator) {		
+		let _result = calculate(parseFloat(figure));
 		let _operator = operator;
+		let _history = [];
 		this.getResult = function() {
 			return _result;
 		}
-		this.setResult = function(value) {
-			return _result = calculate(_result[_operator](parseFloat(value)));
+		this.setResult = function(figure) {
+			return _result = calculate(_result[_operator](parseFloat(figure)));
 		}
 		this.getOperator = function() {
 			return _operator;
 		}
 		this.setOperator = function(operator) {
 			return _operator = operator;
+		}
+		this.getHistory = function() {
+			return _history.join(' ');
+		}
+		this.setHistory = function(value) {
+			return _history.push(value);
 		}
 	}
 
@@ -70,16 +77,16 @@ class Calculation {
 
 class Operand {
 
-	constructor(figure) {
-		let _result = figure.id !== 'point' ? [figure.value] : [0, figure.value];
+	constructor(digit) {
+		let _result = digit.id !== 'point' ? [digit.value] : [0, digit.value];
 		this.getResult = function() {
 			return _result.join('');
 		}
-		this.setResult = function(figure) {
-			if (figure.id !== 'point') {
-				return _result.push(figure.value);
-			} else if (!_result.includes(figure.value)) {
-				return _result.push(figure.value);
+		this.setResult = function(digit) {
+			if (digit.id !== 'point') {
+				return _result.push(digit.value);
+			} else if (!_result.includes(digit.value)) {
+				return _result.push(digit.value);
 			}
 		}
 	}
@@ -103,18 +110,15 @@ var test;
 
 var output;
 
-// var display = setInterval(function() {
-// 	init().display.innerHTML = `<p>${output ? output.getResult() : 0}</p>`
-// }, 100);
 
-for (let item of init().figures) {
+for (let item of init().digits) {
 	item.addEventListener('click', e => {
 		if (!output) {
 			output = new Operand(e.target);
 		} else {
 			output.setResult(e.target);
 		}
-		init().display.querySelector('#figure-display').innerHTML = `<p>${output.getResult()}</p>`
+		init().display.querySelector('#figure-display').innerHTML = `<p>${output.getResult()}</p>`;
 	});
 }
 
@@ -122,19 +126,26 @@ for (let item of init().operators) {
 	item.addEventListener('click', e => {
 		if (output) {
 			if (!test) {
-				test = new Calculation(output.getResult(), e.target.id);			
+				test = new Calculation(output.getResult(), e.target.id);
+				test.setHistory(test.getResult().value);
+				test.setHistory(e.target.id);	
 			} else {
 				test.setResult(output.getResult());
+				test.setHistory(output.getResult());
+				test.setHistory(`( = ${test.getResult().value})`);
 				if (e.target.id === 'equals') {
 					// make my history take a new entry equal to test.evaluate() etc...
 					test.evaluate();
 					// test = '';
 				} else {
 					test.setOperator(e.target.id);
+					test.setHistory(e.target.id);					
 				}
+				init().display.querySelector('#figure-display').innerHTML = `<p>${test.getResult().value}</p>`;
 			}
-			init().display.querySelector('#operator-display').innerHTML = `<p>${e.target.value}</p>`
+			init().display.querySelector('#operator-display').innerHTML = `<p>${e.target.value}</p>`;
 			output = '';
+			console.log(test.getHistory());
 		}
 	});
 }
